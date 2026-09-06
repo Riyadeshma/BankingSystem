@@ -1,0 +1,25 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    <h1 class="mb-4">Your Accounts</h1>
+
+    <div class="row">
+    {% for account in accounts %}
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">{{ account.account_number }}</h5>
+                    <p class="card-subtitle text-muted mb-2">{{ account.get_account_type_display }}</p>
+                    <h3 class="text-success">₹{{ account.balance }}</h3>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <p class="text-muted">You have no accounts yet.</p>
+    {% endfor %}
+    </div>
+
+    <a href="{% url 'deposit' %}" class="btn btn-primary mt-3">Make a Deposit</a>
+{% endblock %}

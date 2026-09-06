@@ -1,0 +1,28 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}Deposit{% endblock %}
+
+{% block content %}
+    <h1 class="mb-4">Make a Deposit</h1>
+
+    <form method="POST" class="w-50">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label class="form-label">Account</label>
+            <select name="account_id" class="form-select">
+                {% for account in accounts %}
+                    <option value="{{ account.id }}">{{ account.account_number }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Amount</label>
+            <input type="number" name="amount" step="0.01" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-success">Deposit</button>
+        <a href="{% url 'dashboard' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+{% endblock %}
