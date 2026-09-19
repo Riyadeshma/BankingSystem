@@ -10,7 +10,7 @@
 
         <div class="mb-3">
             <label class="form-label">Account</label>
-            <select name="account_id" class="form-select">
+            <select name="account_id" class="form-select"></select>
                 {% for account in accounts %}
                     <option value="{{ account.id }}">{{ account.account_number }}</option>
                 {% endfor %}
